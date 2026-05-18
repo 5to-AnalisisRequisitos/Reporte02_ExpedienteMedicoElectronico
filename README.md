@@ -6,7 +6,7 @@ Sistema web para la gestión clínica y administrativa de consultorios médicos 
 
 ---
 
-## Descripción
+## 📌 Descripción
 
 EME es una aplicación web que corre localmente (`localhost`) y centraliza la información clínica y administrativa de un consultorio:
 
@@ -18,7 +18,7 @@ EME es una aplicación web que corre localmente (`localhost`) y centraliza la in
 
 ---
 
-## Requisitos previos
+## 🛠️ Requisitos previos
 
 | Requisito | Versión mínima | Descarga |
 |-----------|---------------|---------|
@@ -36,7 +36,7 @@ node --version
 
 ---
 
-## Instalación
+## 🛠️ Instalación
 
 1. Descarga el proyecto:
 
@@ -65,7 +65,7 @@ Proyecto01_ExpedienteMedicoElectronico-main/
 
 ---
 
-## Iniciar el sistema
+## 🌐 Iniciar el sistema
 
 ### Windows
 
@@ -98,7 +98,7 @@ Abre tu navegador en: **http://localhost:3000**
 
 ---
 
-## Primer uso
+## 🎯 Primer uso
 
 La primera vez que abras el sistema deberás crear el **Administrador principal**:
 
@@ -112,7 +112,7 @@ Una vez dentro, crea las cuentas del resto del equipo desde **"Gestión de usuar
 
 ---
 
-## Roles de usuario
+## 👥 Roles de usuario
 
 | Rol | Puede hacer | No puede hacer |
 |-----|-------------|----------------|
@@ -122,7 +122,7 @@ Una vez dentro, crea las cuentas del resto del equipo desde **"Gestión de usuar
 
 ---
 
-## Funcionalidades principales
+## 🛠️ Funcionalidades principales
 
 ### Médico
 
@@ -144,7 +144,7 @@ Mismos pasos que el Médico para registrar pacientes, buscar y agendar citas. No
 
 ---
 
-## Seguridad
+## 🔐 Seguridad
 
 - Sesión con cierre automático tras **15 minutos de inactividad** (aviso con cuenta regresiva de 60 s).
 - Bloqueo de cuenta tras **5 intentos de login fallidos** durante 15 minutos.
@@ -154,7 +154,7 @@ Mismos pasos que el Médico para registrar pacientes, buscar y agendar citas. No
 
 ---
 
-## Preguntas frecuentes
+## 📚 Preguntas frecuentes
 
 **El navegador dice "No se puede acceder a localhost:3000"**
 El servidor no está corriendo. Ejecuta nuevamente `iniciar.bat` o `iniciar.sh` y no cierres la terminal.
@@ -179,11 +179,5 @@ Deberás reiniciar el sistema:
 4. Vuelve a iniciar el sistema y crea un nuevo Administrador.
 
 > ⚠️ Esto elimina **todos los datos** (pacientes, citas, consultas). Úsalo solo como último recurso.
-
----
-
-## Apagar el sistema
-
-1. Asegúrate de que todos los usuarios hayan cerrado sesión.
 2. Ve a la terminal donde corre el servidor.
 3. Presiona `Ctrl + C` y confirma con `S` o `Y`.
