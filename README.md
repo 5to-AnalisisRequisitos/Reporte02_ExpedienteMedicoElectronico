@@ -1,4 +1,4 @@
-# 🏥 EME — Expediente Médico Electrónico
+# 🏥 Reporte02_ExpedienteMedicoElectronico
 
 Sistema web para la gestión clínica y administrativa de consultorios médicos pequeños. Permite registrar pacientes, agendar citas, registrar consultas y administrar usuarios con roles diferenciados.
 
@@ -201,13 +201,3 @@ Deberás reiniciar el sistema:
 1. Asegúrate de que todos los usuarios hayan cerrado sesión.
 2. Ve a la terminal donde corre el servidor.
 3. Presiona `Ctrl + C` y confirma con `S` o `Y`.
-
----
-
-## Autores
-
-- Edson Joel Carrera Avila
-- Mauricio Bonifacio Hernández
-
-**Grupo:** 302 | **Profesor:** Prof. Mtro. Raul Rolando Jara Montes  
-Universidad Autónoma de la Ciudad de México — Licenciatura en Ingeniería de Software
