@@ -2,21 +2,7 @@
 
 Sistema web para la gestión clínica y administrativa de consultorios médicos pequeños. Permite registrar pacientes, agendar citas, registrar consultas y administrar usuarios con roles diferenciados.
 
-> Proyecto desarrollado para la materia **Análisis de Requisitos** — Ingeniería de Software, UACM.
-
----
-
-## 📋 Tabla de contenidos
-
-- [Descripción](#descripción)
-- [Requisitos previos](#requisitos-previos)
-- [Instalación](#instalación)
-- [Iniciar el sistema](#iniciar-el-sistema)
-- [Primer uso](#primer-uso)
-- [Roles de usuario](#roles-de-usuario)
-- [Funcionalidades principales](#funcionalidades-principales)
-- [Seguridad](#seguridad)
-- [Preguntas frecuentes](#preguntas-frecuentes)
+**Autor:** Edson Joel Carrera Avila
 
 ---
 
