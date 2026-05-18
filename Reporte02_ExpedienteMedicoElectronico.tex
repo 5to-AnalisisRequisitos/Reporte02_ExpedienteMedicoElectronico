@@ -1,0 +1,670 @@
+\documentclass[11pt,a4paper]{article}
+
+% ============================================================
+% Paquetes
+% ============================================================
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel} % <-- CORREGIDO: cambiado a 'spanish'
+
+% --- PAQUETES ---
+\usepackage{colortbl}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+% --- SOLUCIÓN DEFINITIVA PARA EL DESBORDAMIENTO DE URL ---
+\usepackage{xurl} % Permite saltos de línea en CUALQUIER carácter de la URL
+
+% Carga hyperref DESPUÉS de xurl
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=blue, citecolor=black]{hyperref}
+
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% --- REDEFINICIONES ---
+\renewcommand{\contentsname}{Contenido}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\figurename}{Figura}
+
+% ============================================================
+% Colores
+% ============================================================
+\definecolor{primario}{HTML}{2C3E50}
+\definecolor{secundario}{HTML}{3498DB}
+\definecolor{exito}{HTML}{27AE60}
+\definecolor{alerta}{HTML}{E67E22}
+\definecolor{peligro}{HTML}{C0392B}
+\definecolor{gris}{HTML}{7F8C8D}
+\definecolor{grisclaro}{HTML}{ECF0F1}
+\definecolor{azulclaro}{HTML}{EBF5FB}
+\definecolor{verdeclaro}{HTML}{E8F8F0}
+\definecolor{naranjaclaro}{HTML}{FDF2E9}
+\definecolor{rojoclaro}{HTML}{FDEDEC}
+
+% ============================================================
+% Hyperref
+% ============================================================
+\hypersetup{
+    colorlinks=true,
+    linkcolor=secundario,
+    urlcolor=secundario,
+    pdftitle={Instructivo de Usuario - Sistema EME},
+    pdfauthor={Edson Joel Carrera Avila},
+    pdfsubject={Instructivo de instalacion y uso}
+}
+
+% ============================================================
+% Titulos
+% ============================================================
+\titleformat{\section}
+    {\normalfont\Large\bfseries\color{primario}}
+    {\thesection.}{0.5em}{}
+\titleformat{\subsection}
+    {\normalfont\large\bfseries\color{primario}}
+    {\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}
+    {\normalfont\normalsize\bfseries\color{primario}} % <-- CORREGIDO: Se eliminó el salto de línea que causaba error
+    {\thesubsubsection.}{0.5em}{}
+
+% ============================================================
+% Encabezado / pie
+% ============================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Expediente Médico Electrónico}}
+\fancyhead[R]{\small\textit{Instructivo de Usuario}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ============================================================
+% Listas
+% ============================================================
+\setlist[itemize]{leftmargin=*,itemsep=3pt,parsep=0pt,topsep=4pt}
+\setlist[enumerate]{leftmargin=*,itemsep=4pt,parsep=0pt,topsep=4pt}
+
+% ============================================================
+% Tipos de columna
+% ============================================================
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% ============================================================
+% Cajas de aviso
+% ============================================================
+\newtcolorbox{cajaInfo}{
+  enhanced, breakable,
+  colback=azulclaro, colframe=secundario,
+  boxrule=0.5pt, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+  before skip=8pt, after skip=8pt
+}
+\newtcolorbox{cajaTip}{
+  enhanced, breakable,
+  colback=verdeclaro, colframe=exito,
+  boxrule=0.5pt, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+  before skip=8pt, after skip=8pt
+}
+\newtcolorbox{cajaAlerta}{
+  enhanced, breakable,
+  colback=naranjaclaro, colframe=alerta,
+  boxrule=0.5pt, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+  before skip=8pt, after skip=8pt
+}
+\newtcolorbox{cajaCritica}{
+  enhanced, breakable,
+  colback=rojoclaro, colframe=peligro,
+  boxrule=0.8pt, arc=2pt, left=8pt, right=8pt, top=6pt, bottom=6pt,
+  before skip=8pt, after skip=8pt
+}
+
+% ============================================================
+% Listings (codigo / consola)
+% ============================================================
+\lstset{
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    columns=fullflexible,
+    backgroundcolor=\color{grisclaro},
+    frame=single,
+    framerule=0.5pt,
+    rulecolor=\color{gris}
+}
+
+% ============================================================
+% Información del documento
+% ============================================================
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    \vspace*{1.5cm}
+
+    {\Large \textbf{Universidad Autónoma de la Ciudad de México}}\\[0.3cm]
+    {\large Licenciatura en Ingeniería de Software}\\[0.2cm]
+    {\large Análisis de Requisitos}\\[2.5cm]
+
+    \rule{\linewidth}{0.5pt}\\[0.4cm]
+    {\LARGE \bfseries Segundo Avance de Proyecto}\\[0.3cm]
+    {\Large Expediente Médico Electrónico}\\[0.3cm]
+    \rule{\linewidth}{0.5pt}\\[2cm]
+
+    \begin{flushleft}
+        \textbf{Alumno:} Edson Joel Carrera Avila \\[0.3cm]
+        \textbf{Alumno:} Mauricio Bonifacio Hernández \\[0.3cm]
+        \textbf{Grupo:} 302 \\[0.3cm]
+        \textbf{Profesor:} Prof. Mtro. Raul Rolando Jara Montes \\[0.3cm]
+    \end{flushleft}
+    \vfill
+\end{titlepage}
+
+% <-- CORREGIDO: Aislamiento del color del índice para mantenerlo negro
+{
+    \hypersetup{linkcolor=black}
+    \tableofcontents
+}
+\newpage
+
+% ============================================================
+% 1. QUE ES EL SISTEMA
+% ============================================================
+\section{Que es este sistema?}
+
+\textbf{EME (Expediente Medico Electronico)} es una aplicacion web disenada para consultorios medicos pequenos. Permite gestionar de forma centralizada y segura toda la informacion clinica y administrativa de los pacientes.
+\subsection*{El sistema permite:}
+
+\begin{itemize}
+    \item Registrar pacientes y abrirles un expediente clinico unico.
+    \item Agendar citas medicas con un flujo centrado en el paciente.
+    \item Registrar consultas con signos vitales, diagnostico y recetas.
+    \item Manejar tres tipos de usuarios con permisos diferenciados: \textbf{Administrador, Medico y Recepcionista}.
+    \item Llevar un registro automatico (auditoria) de todo lo que ocurre en el sistema.
+\end{itemize}
+
+\begin{cajaInfo}
+    \textbf{Importante:} el sistema funciona \textbf{en tu propia computadora} (en \texttt{localhost}), no en internet. Es ideal para un consultorio pequeno donde la informacion se mantiene local.
+\end{cajaInfo}
+
+% ============================================================
+% 2. REQUISITOS PREVIOS
+% ============================================================
+\section{Requisitos previos}
+
+Solo necesitas dos cosas instaladas en tu computadora:
+
+\begin{center}
+    \begin{tabular}{|L{3.5cm}|L{3cm}|L{6cm}|}
+        \hline
+        \rowcolor{grisclaro}
+        \textbf{Requisito} & \textbf{Version} & \textbf{Donde se descarga}                          \\
+        \hline
+        Node.js
+                           & v18 o superior   & \url{https://nodejs.org/es/download/}               \\
+        \hline
+        Navegador web      & Reciente         & Chrome, Firefox, Edge o Safari (ya viene instalado) \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{cajaTip}
+    \textbf{npm} se instala automaticamente junto con Node.js, no necesitas instalarlo aparte.
+\end{cajaTip}
+
+\begin{enumerate}
+    \item Abre la \textbf{Terminal} (Linux/macOS) o \textbf{Simbolo del sistema} (Windows):
+          \begin{itemize}
+              \item \textbf{Windows:} pulsa la tecla \texttt{Windows + R}, escribe \texttt{cmd} y presiona Enter.
+              \item \textbf{Linux:} abre tu Terminal habitual.
+          \end{itemize}
+    \item Escribe este comando y presiona Enter:
+          \begin{lstlisting}
+node --version
+\end{lstlisting}
+    \item Si aparece algo como \texttt{v18.17.0} o un numero mayor, \textbf{ya lo tienes}. Salta al Paso 1.
+    \item Si aparece \textit{"comando no reconocido"} o un error, descarga e instala Node.js desde el enlace anterior. \textbf{Cierra y vuelve a abrir la Terminal} despues de instalar.
+\end{enumerate}
+
+% ============================================================
+% 3. PASO 1
+% ============================================================
+\section{Descargar y preparar el proyecto}
+
+\begin{enumerate}
+    \item Descarga el archivo \url{https://github.com/5to-AnalisisRequisitos/Proyecto01_ExpedienteMedicoElectronico/archive/refs/heads/main.zip}.
+    \item El archivo comprimido, sin importar el sistema operativo, se decargara automaticamente en la carpeta "Descargas".
+    \item Descomprimelo en la ruta que quieras, debes ver una carpeta con esta estructura:
+\end{enumerate}
+
+\begin{lstlisting}
+Proyecto01_ExpedienteMedicoElectronico-main/
+|-- server.js          
+|-- setup.js              
+|-- package.json        
+|-- README.md            
+|-- iniciar.sh           
+|-- iniciar.bat                 
+|-- .gitignore        
+\-- public/
+    |-- index.html    
+    |-- styles.css         
+    \-- app.js          
+\end{lstlisting}
+
+\begin{cajaCritica}
+    \textbf{No muevas, renombres ni borres ningun archivo.} El sistema necesita todos para funcionar correctamente.
+\end{cajaCritica}
+
+% ============================================================
+% 4. PASO 2: INICIAR
+% ============================================================
+\section{Iniciar el sistema}
+
+Hay un script preparado que hace todo el trabajo automaticamente: verifica Node.js, instala lo necesario y arranca el servidor.
+\subsection{Usuario de Windows}
+
+\begin{enumerate}
+    \item Abre la \textbf{Terminal} dentro de la carpeta del proyecto (clic derecho sobre la carpeta y \textit{"Abrir en terminal"}.
+    \item Ejecuta el script:
+          \begin{lstlisting}
+./iniciar.bat
+        \end{lstlisting}
+    \item Cuando termine, veras un mensaje parecido a este:
+\end{enumerate}
+
+\begin{lstlisting}
+========================================
+  EME v2.0 - Expediente Medico Electronico
+  Conforme a IEEE 830 + Caso de Uso
+========================================
+  Servidor:    http://localhost:3000
+  Estado:      Funcionando
+  JWT Secret:  Configurado (.env)
+  Rate limit:  5 intentos / 15 min
+  Helmet:      Cabeceras de seguridad activas
+  CORS:        Restringido a localhost:3000
+\end{lstlisting}
+
+\begin{cajaCritica}
+    \textbf{No cierres esa ventana negra} mientras estes usando el sistema. Si la cierras, el sistema se apaga.
+\end{cajaCritica}
+
+\subsection{Usuario de Linux}
+
+\begin{enumerate}
+    \item Abre la \textbf{Terminal} dentro de la carpeta del proyecto (clic derecho sobre la carpeta y \textit{"Abrir terminal aqui"}.
+    \item \textbf{Solo la primera vez}, da permisos de ejecucion al script:
+          \begin{lstlisting}
+chmod +x iniciar.sh
+\end{lstlisting}
+    \item Ejecuta el script:
+          \begin{lstlisting}
+./iniciar.sh
+\end{lstlisting}
+    \item Veras el mismo mensaje de confirmacion que aparece arriba.
+\end{enumerate}
+
+\begin{cajaCritica}
+    \textbf{No cierres la terminal} mientras uses el sistema.
+\end{cajaCritica}
+
+\begin{cajaTip}
+    Si aparece un mensaje sobre que falta Node.js, el script te abrira automaticamente la pagina oficial de descarga. Instalalo, cierra y vuelve a abrir todo, y ejecuta de nuevo el script.
+\end{cajaTip}
+
+% ============================================================
+% 5. PASO 3: NAVEGADOR
+% ============================================================
+\section{Abrir el sistema en el navegador}
+
+\begin{enumerate}
+    \item Abre tu navegador favorito (Chrome, Firefox, Edge o Safari).
+    \item En la barra de direcciones escribe \textbf{exactamente}:
+          \begin{lstlisting}
+http://localhost:3000
+\end{lstlisting}
+    \item Presiona Enter.
+    \item Listo. Ya estas dentro del sistema.
+\end{enumerate}
+
+% ============================================================
+% 6. PASO 4: PRIMER ADMIN
+% ============================================================
+\section{Crear el primer Administrador}
+
+\begin{cajaInfo}
+    \textbf{Esta seccion solo aplica la primera vez que abres el sistema.} Despues de crear el primer Administrador, esta opcion se desactiva.
+\end{cajaInfo}
+
+La primera vez que abres el sistema \textbf{no hay ningun usuario creado}, asi que veras la pantalla \textit{"Bienvenido al EME"} que te invita a configurar el sistema.
+\begin{enumerate}
+    \item Haz clic en el boton \textbf{"Crear administrador"}.
+    \item Llena el formulario con tus datos:
+\end{enumerate}
+
+\begin{center}
+    \begin{tabular}{|L{3.5cm}|L{9cm}|}
+        \hline
+        \rowcolor{grisclaro}
+        \textbf{Campo}       & \textbf{Que poner}                                                         \\
+        \hline
+        Nombre               & Tu nombre                                                                  \\
+        \hline
+        Apellido             & Tu apellido                                                                \\
+        \hline
+        Email                & Tu correo electronico (sera tu usuario para entrar)                        \\
+        \hline
+        Telefono             & Tu telefono                                                                \\
+        \hline
+        Contrasena           & Minimo 8 caracteres, con al menos una mayuscula, una minuscula y un numero \\
+        \hline
+        Confirmar contrasena & Repite exactamente la misma contrasena                                     \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\begin{enumerate}
+    \setcounter{enumi}{2}
+    \item Haz clic en \textbf{"Crear administrador"}.
+    \item Veras la pantalla \textit{"!Cuenta creada!"} que muestra un \textbf{codigo unico de recuperacion} con esta forma:
+          \begin{lstlisting}
+EME-XXXX-XXXX-XXXX-XXXX
+\end{lstlisting}
+\end{enumerate}
+
+\begin{cajaCritica}
+    \textbf{IMPORTANTE --- leer con atencion:}
+    \begin{itemize}
+        \item Este codigo aparece \textbf{una sola vez}, ya no podras verlo otra vez.
+        \item Es \textbf{la unica forma} de recuperar tu cuenta si olvidas la contrasena.
+        \item Tienes tres opciones para guardarlo, los botones estan en la misma pantalla:
+              \begin{itemize}
+                  \item \textbf{Copiar} al portapapeles.
+                  \item \textbf{Descargar} como archivo de texto.
+                  \item Escribirlo en un papel o un gestor de contrasenas.
+              \end{itemize}
+        \item \textbf{Guardalo en un lugar seguro} (cajon con llave, gestor de contrasenas, archivo cifrado).
+    \end{itemize}
+\end{cajaCritica}
+
+\begin{enumerate}
+    \setcounter{enumi}{4}
+    \item Marca la casilla \textbf{"He guardado mi codigo de recuperacion"}.
+    \item Haz clic en \textbf{"Continuar al inicio de sesion"}.
+    \item Ya en la pantalla de \textbf{Login}, escribe tu correo y contrasena y entra al sistema.
+\end{enumerate}
+
+% ============================================================
+% 7. PASO 5: CREAR EQUIPO
+% ============================================================
+\section{Crear las cuentas de tu equipo}
+
+Una vez dentro como Administrador, lo primero que conviene hacer es crear las cuentas para el resto del personal.
+\subsection{Los tres roles del sistema}
+
+% <-- CORREGIDO: Se eliminó el envoltorio \begin{center} y \end{center} para evitar las advertencias.
+\begin{longtable}{|L{2.8cm}|L{5cm}|L{5cm}|}
+    \hline
+    \rowcolor{grisclaro}
+    \textbf{Rol}           & \textbf{Que puede hacer}                                                                               & \textbf{Que NO puede hacer}                                               \\
+    \hline
+    \endhead
+
+    \textbf{Administrador} & Crear y gestionar cuentas, ver auditoria global, restaurar pacientes eliminados, ver estadisticas.     & Ver expedientes, consultas ni datos clinicos.                             \\
+    \hline
+
+    \textbf{Medico}        & Todo lo relacionado a pacientes: registrar, consultar, atender consultas, recetar, eliminar pacientes. & Crear cuentas de usuario.                                                 \\
+    \hline
+
+    \textbf{Recepcionista} & Registrar pacientes nuevos, agendar y cancelar citas, editar datos basicos.                            & Ver consultas, diagnosticos ni recetas. Tampoco puede eliminar pacientes. \\
+    \hline
+\end{longtable}
+
+\subsection{Como crear un usuario nuevo}
+
+\begin{enumerate}
+    \item En el menu superior, entra a \textbf{"Gestion de usuarios"}.
+    \item Haz clic en el boton azul \textbf{"+ Crear usuario"}.
+    \item Llena el formulario:
+          \begin{itemize}
+              \item \textbf{Nombre y apellido} del usuario.
+              \item \textbf{Email} (sera su usuario para entrar).
+              \item \textbf{Rol}: elige Administrador, Medico o Recepcionista.
+              \item \textbf{Especialidad y numero de cedula profesional}: solo aparecen si elegiste Medico.
+              \item \textbf{Contrasena temporal} (la persona puede cambiarla despues).
+          \end{itemize}
+    \item Haz clic en \textbf{"Crear"}.
+    \item El sistema generara un \textbf{codigo unico de recuperacion} para ese usuario.
+\end{enumerate}
+
+\begin{cajaAlerta}
+    \textbf{Copia el codigo y entregaselo a la persona en privado.} Es su responsabilidad guardarlo en un lugar seguro. Repite este paso por cada persona del equipo.
+\end{cajaAlerta}
+
+% ============================================================
+% 8. USO MEDICO
+% ============================================================
+\section{Uso diario: Medico}
+
+Cuando un medico inicia sesion, ve un \textbf{Dashboard} con sus estadisticas: citas de hoy, total de pacientes, expedientes abiertos y consultas del mes.
+\subsection{Registrar un paciente nuevo}
+
+\begin{enumerate}
+    \item Entra a \textbf{"Pacientes"} en el menu.
+    \item Haz clic en \textbf{"+ Nuevo paciente"}.
+    \item Llena los datos: CURP, nombre, apellido, fecha de nacimiento, sexo, telefono, etc.
+    \item Escribe el \textbf{motivo de apertura del expediente} (ej. \textit{"Primera consulta"}).
+    \item Si quieres, agrega tipo de sangre, alergias y observaciones (seccion colapsable).
+    \item Haz clic en \textbf{"Crear paciente y expediente"}.
+    \item El sistema generara automaticamente un \textbf{numero de expediente unico} con formato \texttt{EXP-2026-00001}.
+\end{enumerate}
+
+\begin{cajaTip}
+    Si la CURP ya existe en el sistema, te avisara y mostrara al paciente existente para evitar duplicados.
+\end{cajaTip}
+
+\subsection{Buscar un paciente}
+
+En la seccion \textbf{"Pacientes"} usa el campo \textbf{"Buscar por nombre, CURP o telefono..."}. Empieza a escribir y los resultados apareceran automaticamente.
+
+\subsection{Agendar una cita}
+
+\begin{enumerate}
+    \item Abre el \textbf{detalle del paciente} haciendo clic sobre su nombre en la tabla.
+    \item Haz clic en \textbf{"Agendar cita"}.
+    \item Selecciona la \textbf{fecha} (no puede ser anterior a hoy), la \textbf{hora}, el \textbf{medico} y el \textbf{motivo}.
+    \item Haz clic en \textbf{"Agendar"}.
+\end{enumerate}
+
+\subsection{Registrar una consulta}
+
+\begin{enumerate}
+    \item Entra a \textbf{"Citas"} o al detalle del paciente.
+    \item Haz clic en \textbf{"Atender"} o \textbf{"Nueva consulta"} en la cita correspondiente.
+    \item Llena los \textbf{signos vitales}: peso, altura, presion arterial, temperatura, frecuencia cardiaca.
+    \item Escribe el \textbf{motivo de consulta}, \textbf{sintomas}, \textbf{diagnostico} y \textbf{plan de tratamiento}.
+    \item Si quieres, agrega \textbf{medicamentos prescritos} con dosis, cantidad y duracion.
+    \item Haz clic en \textbf{"Guardar consulta"}.
+\end{enumerate}
+
+La consulta queda registrada y la cita se marca automaticamente como \textit{"completada"}.
+\subsection{Eliminar un paciente (solo medicos)}
+
+\begin{enumerate}
+    \item Abre el detalle del paciente.
+    \item Haz clic en \textbf{"Eliminar paciente"}.
+    \item Escribe un \textbf{motivo obligatorio} de al menos 5 caracteres.
+    \item Confirma.
+\end{enumerate}
+
+\begin{cajaInfo}
+    El paciente se marca como inactivo (\textbf{no se borra realmente}), su expediente se archiva y sus citas pendientes se cancelan automaticamente. Solo el Administrador podra restaurarlo.
+\end{cajaInfo}
+
+% ============================================================
+% 9. USO RECEPCIONISTA
+% ============================================================
+\section{Uso diario: Recepcionista}
+
+La recepcionista usa el sistema principalmente para registrar pacientes y agendar citas.
+\begin{itemize}
+    \item \textbf{Puede:} registrar pacientes, editar sus datos (con motivo obligatorio), agendar y cancelar citas, ver la agenda del dia.
+    \item \textbf{No puede:} ver consultas, diagnosticos, recetas ni antecedentes medicos.
+\end{itemize}
+
+Los pasos son los mismos que para el medico en las secciones de \textbf{Registrar paciente}, \textbf{Buscar paciente} y \textbf{Agendar cita} (puntos 8.1 a 8.3 de este instructivo).
+% ============================================================
+% 10. USO ADMIN
+% ============================================================
+\section{Uso diario: Administrador}
+
+El administrador no atiende pacientes. Su trabajo es gestionar usuarios y supervisar el sistema.
+
+\subsection{Secciones del menu}
+
+\begin{center}
+    \begin{tabular}{|L{5cm}|L{8cm}|}
+        \hline
+        \rowcolor{grisclaro}
+        \textbf{Seccion}             & \textbf{Para que sirve}                                             \\
+        \hline
+        Dashboard                    & Resumen estadistico del sistema                                     \\
+        \hline
+        Gestion de usuarios          & Crear, editar, activar o desactivar cuentas                         \\
+        \hline
+        Auditoria global del sistema & Ver todo lo que pasa: logins, accesos denegados, cambios            \\
+        \hline
+        Pacientes eliminados         & Ver pacientes con eliminacion logica y restaurarlos si es necesario \\
+        \hline
+        Mi actividad                 & Ver tus propias acciones registradas                                \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\subsection{Desactivar a un usuario}
+
+\begin{enumerate}
+    \item Entra a \textbf{"Gestion de usuarios"}.
+    \item Busca al usuario en la tabla.
+    \item Haz clic en \textbf{"Desactivar"}.
+    \item El usuario no podra iniciar sesion hasta que lo vuelvas a activar.
+\end{enumerate}
+
+\begin{cajaTip}
+    No puedes desactivarte a ti mismo, ni desactivar al ultimo Administrador activo del sistema.
+\end{cajaTip}
+
+\subsection{Restaurar un paciente eliminado}
+
+\begin{enumerate}
+    \item Entra a \textbf{"Pacientes eliminados"}.
+    \item Busca el paciente.
+    \item Haz clic en \textbf{"Restaurar"}.
+    \item El paciente vuelve a estar activo, igual que su expediente.
+\end{enumerate}
+
+\subsection{Consultar la auditoria global}
+
+\begin{enumerate}
+    \item Entra a \textbf{"Auditoria global del sistema"}.
+    \item Puedes filtrar por:
+          \begin{itemize}
+              \item \textbf{Tipo de accion} (Login, Login fallido, Crear, Actualizar, Eliminar, etc.).
+              \item \textbf{Email del usuario} (escribe parte del email, ej. \texttt{dr@}).
+          \end{itemize}
+    \item Haz clic en \textbf{"Filtrar"}.
+\end{enumerate}
+
+% ============================================================
+% 11. RECUPERAR CONTRASENA
+% ============================================================
+\section{Recuperar contrasena olvidada}
+
+Si olvidas tu contrasena y tienes tu codigo de recuperacion:
+
+\begin{enumerate}
+    \item En la pantalla de Login, haz clic en \textbf{"!Olvidaste tu contrasena?"}.
+    \item Escribe tu \textbf{email} y tu \textbf{codigo de recuperacion} (\texttt{EME-XXXX-XXXX-XXXX-XXXX}).
+    \item Haz clic en \textbf{"Verificar codigo"}.
+    \item Te llevara a la pantalla \textbf{"Nueva contrasena"}.
+    \item Escribe la contrasena nueva dos veces (con los mismos requisitos: minimo 8 caracteres, mayuscula, minuscula y numero).
+    \item Haz clic en \textbf{"Restablecer contrasena"}.
+\end{enumerate}
+
+\begin{cajaCritica}
+    \textbf{El sistema te dara un nuevo codigo de recuperacion.} Guardalo igual que la primera vez. El anterior queda inservible.
+\end{cajaCritica}
+
+\begin{cajaInfo}
+    Si \textbf{perdiste el codigo de recuperacion}, pide al Administrador que reasigne tu cuenta. Si quien perdio el codigo es el unico Administrador, sera necesario reiniciar el sistema (ver Preguntas Frecuentes).
+\end{cajaInfo}
+
+% ============================================================
+% 12. APAGAR
+% ============================================================
+\section{Como apagar el sistema}
+
+\begin{enumerate}
+    \item Asegurate de que todos los usuarios hayan cerrado sesion.
+    \item Ve a la ventana negra (la consola que se abrio al iniciar).
+    \item Presiona \texttt{Ctrl + C} en tu teclado.
+    \item Confirma con \texttt{S} o \texttt{Y} si lo pregunta.
+    \item Cierra la ventana.
+\end{enumerate}
+
+\begin{cajaTip}
+    Mientras la ventana negra este abierta, el sistema sigue funcionando. Si solo cierras el navegador, el servidor sigue activo.
+\end{cajaTip}
+
+% ============================================================
+% 13. FAQ
+% ============================================================
+\section{Preguntas frecuentes y solucion de problemas}
+
+\subsection*{Al abrir \texttt{http://localhost:3000} el navegador dice \textit{"No se puede acceder"}}
+
+Significa que el servidor no esta corriendo. Vuelve al \textbf{Paso 2} y ejecuta \texttt{iniciar.bat} o \texttt{iniciar.sh} otra vez. Asegurate de no cerrar la ventana negra.
+\subsection*{Aparece \textit{"Demasiados intentos. Espera 15 minutos"}}
+
+Has fallado 5 veces seguidas al iniciar sesion. El sistema te bloquea durante 15 minutos para evitar ataques. Espera y vuelve a intentar; revisa que el email y la contrasena sean correctos.
+
+\subsection*{La sesion se cerro sola}
+
+El sistema \textbf{cierra automaticamente la sesion tras 15 minutos sin actividad}. Antes de cerrar veras un aviso con cuenta regresiva de 60 segundos: si pulsas \textbf{"Seguir conectado"}, la sesion se mantiene. Esta es una medida de seguridad para que nadie use tu cuenta si te alejas de la computadora.
+\subsection*{Olvide el codigo de recuperacion del unico Administrador}
+
+En este caso, no hay forma de recuperar la cuenta. Tendras que reiniciar el sistema:
+
+\begin{enumerate}
+    \item Apaga el servidor (\texttt{Ctrl + C} en la consola).
+    \item \textbf{Haz una copia de respaldo} del archivo \texttt{eme.db} por si necesitas consultar los datos antiguos.
+    \item Borra el archivo \texttt{eme.db} de la carpeta del proyecto.
+    \item Vuelve a iniciar el sistema con \texttt{iniciar.bat} o \texttt{iniciar.sh}.
+    \item El sistema te pedira crear un nuevo Administrador. Esta vez guarda muy bien el codigo.
+\end{enumerate}
+
+\begin{cajaCritica}
+    Esto \textbf{borrara todos los datos del sistema} (pacientes, citas, consultas). Solo es necesario en ultimo caso.
+\end{cajaCritica}
+
+\subsection*{Donde se guardan los datos?}
+
+Todos los datos estan en el archivo \texttt{eme.db} dentro de la carpeta del proyecto. Es una base de datos SQLite. Si quieres hacer respaldos, copia ese archivo a un lugar seguro periodicamente.
+\subsection*{Puedo usar el sistema desde otra computadora en la misma red?}
+
+El sistema fue disenado para funcionar en \textbf{localhost} (solo la computadora donde corre el servidor). Por seguridad (CORS restringido), no se permite acceso desde otras computadoras de la red sin modificaciones adicionales en \texttt{server.js}.
+\subsection*{Puedo cambiar el puerto 3000 por otro?}
+
+Si. Abre el archivo \texttt{.env} (se genera automaticamente la primera vez), y cambia el valor de \texttt{PORT=3000} por el puerto que quieras (por ejemplo \texttt{PORT=8080}). Luego reinicia el sistema y accede desde \texttt{http://localhost:8080}.
+
+\subsection*{La instalacion se queda atorada en \texttt{npm install}}
+
+Verifica tu conexion a internet (se descargan los paquetes de Node.js desde \texttt{npmjs.com}). Si tienes proxy o firewall corporativo, podria estar bloqueando la descarga. Pide ayuda a tu administrador de TI.
+
+\end{document}
